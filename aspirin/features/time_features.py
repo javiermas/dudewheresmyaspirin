@@ -1,4 +1,4 @@
-from pandas import concat, DataFrame, get_dummies
+from pandas import DataFrame, get_dummies, merge
 from numpy import sin, pi, cos
 
 def add_time_columns(df, add_month=True, add_year=True, add_season=True,
@@ -8,11 +8,11 @@ def add_time_columns(df, add_month=True, add_year=True, add_season=True,
     time_columns = ['year', 'month', 'season']
     new_df = DataFrame(data=None, index=df.index)
     if add_year:
-        new_df['year'] = new_df.index.get_level_values(0).year
+        new_df['year'] = new_df.index.get_level_values('date').year
 
     if add_month:
-        new_df['month'] = new_df.index.get_level_values(0).month
-        new_df['daysinmonth'] = new_df.index.get_level_values(0).daysinmonth
+        new_df['month'] = new_df.index.get_level_values('date').month
+        new_df['daysinmonth'] = new_df.index.get_level_values('date').daysinmonth
         if add_trigonometries:
             new_df['month_sin'] = new_df.month\
                     .apply(lambda dtmonth: sin(2 * dtmonth * pi) / 12)
@@ -28,10 +28,11 @@ def add_time_columns(df, add_month=True, add_year=True, add_season=True,
             new_df['season_cos'] = new_df.season\
                     .apply(lambda dtseason: sin(2 * dtseason * pi) / 4)
 
+    import ipdb; ipdb.set_trace()
     if add_dummies:
         time_columns = ['year', 'month', 'season']
         for column in time_columns:
-            new_df = concat([new_df, get_dummies(new_df[column],
-                            prefix = str(column), drop_first=False)], axis=1)
+            dummies_df = get_dummies(new_df[column], prefix=str(column), drop_first=True)
+            new_df = merge(new_df, dummies_df, right_index=True, left_index=True)
 
     return new_df
