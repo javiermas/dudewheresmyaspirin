@@ -20,19 +20,19 @@ E.g.:
 File lagged_readings.py:
 ```
 def lagged_readings(data, lags):
-  for i in range(1, lags):
-    features = do lags
+    for i in range(1, lags):
+      features = do lags
   
-  return features
+    return features
 ```
 
 Every preprocessor should be placed in a separate file, it should consist of a main function (and subfunctions if needed) that takes a pandas DataFrame indexed by [INDEX] and return THE SAME DataFrame with the corresponding modifications.
 E.g.:
 File fill_missing_values.py:
 ```
-def fill_missing_values(data, lags):
-  data = do filling
-  return data
+def fill_missing_values(data):
+    data = do filling
+    return data
 ```
 
 
