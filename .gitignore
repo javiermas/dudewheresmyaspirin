@@ -1,3 +1,4 @@
 *.egg-info
 *.csv
 *.xslx
+/py3
