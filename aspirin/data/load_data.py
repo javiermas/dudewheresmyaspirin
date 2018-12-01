@@ -3,6 +3,8 @@ import calendar
 
 
 def load_data(path='../data/Data_Novartis_Datathon-Participants.csv'):
+    import pdb
+    pdb.set_trace()
     data = pd.read_csv(path, header=[0, 1, 2, 3], sep=';')
     data.columns = [col[3] for col in data.columns]
     data = data[[col for col in data if 'Unnamed' not in col]]
@@ -15,6 +17,7 @@ def load_data(path='../data/Data_Novartis_Datathon-Participants.csv'):
     data = pd.pivot_table(data, columns=['Function'], index=index_cols)
     data.columns = [col[1] for col in data.columns]
     month_dict = {v: k for k,v in enumerate(calendar.month_abbr)}
+    data = data.reset_index()
     data['year'] = data['variable'].apply(lambda x: x.split(' ')[1])
     data['month'] = data['variable'].apply(lambda x: x.split(' ')[0])
     data['month_num'] = data['month'].map(month_dict)
