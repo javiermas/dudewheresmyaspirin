@@ -1,8 +1,8 @@
-from itertools import reduce
+from functools import reduce
 import pandas as pd
 
 
-def pipeline(data, preprocessors, features):
+def pipeline(data, preprocessors=[], features=[]):
     for preprocessor in preprocessors:
         data = preprocessor(data)
 
