@@ -28,7 +28,6 @@ def add_time_columns(df, add_month=True, add_year=True, add_season=True,
             new_df['season_cos'] = new_df.season\
                     .apply(lambda dtseason: sin(2 * dtseason * pi) / 4)
 
-    import ipdb; ipdb.set_trace()
     if add_dummies:
         time_columns = ['year', 'month', 'season']
         for column in time_columns:
