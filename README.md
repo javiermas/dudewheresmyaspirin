@@ -26,6 +26,15 @@ def lagged_readings(data, lags):
   return features
 ```
 
+Every preprocessor should be placed in a separate file, it should consist of a main function (and subfunctions if needed) that takes a pandas DataFrame indexed by [INDEX] and return THE SAME DataFrame with the corresponding modifications.
+E.g.:
+File fill_missing_values.py:
+```
+def fill_missing_values(data, lags):
+  data = do filling
+  return data
+```
+
 
 Please make sure to put the file in the features folder.
 
