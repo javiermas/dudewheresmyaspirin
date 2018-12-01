@@ -8,7 +8,7 @@ def lag_multiseries(multiseries, lags=list(range(1, 12))):
        'Investment 5', 'Investment 6', 'Sales 1', 'Sales 2']
 
     for lag in lags:
-        lagged_series = multiseries.groupby(['Cluster', 'Brand Group', 'Country'])[unlagged_cols].shift(lag)
+        lagged_series = multiseries.groupby(['Cluster', 'Brand Group'])[unlagged_cols].shift(lag)
         lagged_series.columns = ['{}_lag_{}'.format(c, lag) for c in unlagged_cols]
         all_lagged = merge(all_lagged, lagged_series, left_index=True, right_index=True)
 
