@@ -3,8 +3,6 @@ import calendar
 
 
 def load_data(path='../data/Data_Novartis_Datathon-Participants.csv'):
-    import pdb
-    pdb.set_trace()
     data = pd.read_csv(path, header=[0, 1, 2, 3], sep=';')
     data.columns = [col[3] for col in data.columns]
     data = data[[col for col in data if 'Unnamed' not in col]]
