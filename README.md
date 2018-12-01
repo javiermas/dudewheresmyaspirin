@@ -1,4 +1,4 @@
-__Hola__
+# Dude where's my aspirin
 
 For development purposes, install the package via:
 
@@ -13,7 +13,7 @@ import aspirin
 ```
 
 
-#Instructions for sharing features
+## Instructions for sharing features
 
 Every feature should be placed in a separate file, it should consist of a main function (and subfunctions if needed) that takes a pandas DataFrame indexed by [INDEX] and return a pandas DataFrame with the same index and only the feature columns.
 E.g.:
