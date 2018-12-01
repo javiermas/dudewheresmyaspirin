@@ -1,8 +1,10 @@
 from pandas import DataFrame, merge
 
-def lag_multiseries(multiseries, lags=list(range(1, 12))):
+
+def lag_multiseries(multiseries, lags=[1, 2, 3, 6, 12]):
     '''
     '''
+    multiseries = multiseries.sort_index()
     all_lagged = DataFrame(index=multiseries.index)
     unlagged_cols = ['Investment 1', 'Investment 2', 'Investment 3', 'Investment 4',
        'Investment 5', 'Investment 6', 'Sales 2']
